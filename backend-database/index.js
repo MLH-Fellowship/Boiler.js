@@ -29,7 +29,7 @@ connection.once("open", () => {
 // connection started
 
 // add routes here:
-const BoilerRoutes = require("./routes/boilers");
+const BoilerRoutes = require(`${__dirname}/routes/boilers`);
 // directory: routes/user.js
 app.use("/boilers", BoilerRoutes);
 // all routes defined in UserRouter will start with /user/*
