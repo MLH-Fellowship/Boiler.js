@@ -1,18 +1,12 @@
-// Frontend
-let get = require('./getData');
-// get.front();
+const mongoose = require('mongoose')
 
-
-// Backend
-// get.back("tset");
-
-// Create
-let upload = require('./upload');
+let api = require('./api');
+let schema = require('./schema');
 
 var params = {
-    docName: "finalTest",
-    image: "gang",
-    name: "tset",
+    colName: "uploadTest",
+    image: "flask.icon",
+    name: "flask",
     directions: [
         "yarn start",
         "yarn build",
@@ -26,5 +20,24 @@ var params = {
     ]
 }
 
-upload.upload(params);
+// api.front(schema);
+// api.back('sampleBoilerLolz', schema);
+api.upload(params, schema);
+
+/*
+// Frontend
+let get = require('./getData');
+let schema = require('./schema');
+get.front(schema);
+*/
+
+// Backend
+// get.back("tset");
+
+// Create
+// let upload = require('./upload');
+
+
+
+// upload.upload(params);
 
