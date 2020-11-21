@@ -1,11 +1,12 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "boiler.js",
+  "version": "0.0.1",
+  "description": "A boilerplate library and setup program.",
   "main": "main.js",
   "homepage": "./",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "npx react-scripts build"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [

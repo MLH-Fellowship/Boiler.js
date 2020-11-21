@@ -1,0 +1,33 @@
+* {
+    --primary-bgcolor: #F1FAEE;
+    --secondary-bgcolor: #A8DADC;
+    --primary-fgcolor: #1D3557;
+    --secondary-fgcolor: #324766;
+    --accent-color: #E63946;
+}
+
+h2 {
+    color: var(--primary-fgcolor);
+    margin: .2em;
+}
+
+.boiler-card {
+    text-align: left;
+    background-color: var(--primary-bgcolor);
+    color: var(--primary-fgcolor);
+    width: fit-content;
+    margin: 1em;
+}
+
+header {
+    text-align: center;
+    font-size: 12pt;
+    background-color: var(--secondary-bgcolor);
+    margin: 0;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.card-body {
+    margin: 1em;
+}
