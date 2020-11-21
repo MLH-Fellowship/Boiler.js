@@ -91,7 +91,7 @@ router.route("/:id").get((req, res) => {
 // DELETE exisitng boiler
 router.route("/:id").delete((req, res) => {
   Boiler.findById(req.params.id)
-    .then(() => res.json("user deleted!"))
+    .then(() => res.json("boiler deleted!"))
     .catch((err) => res.status(400).json("error: " + err));
 });
 
@@ -111,9 +111,6 @@ router.post("/:id/image", upload.array("image", 1), (req, res) => {
       .catch((err) => res.status(400).json(err));
   });
 });
-
-
-
 
 /* STANDARD FILE ROUTES */
 
