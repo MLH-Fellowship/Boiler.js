@@ -6,7 +6,8 @@
   "homepage": "./",
   "scripts": {
     "start": "electron .",
-    "build": "npx react-scripts build"
+    "build": "npx react-scripts build",
+    "develop": "npx react-scripts start"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
