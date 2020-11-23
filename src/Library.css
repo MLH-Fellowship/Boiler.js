@@ -41,9 +41,9 @@ h2 {
     text-align: left;
     background-color: white;
     color: var(--primary-fgcolor);
-    width: fit-content;
     margin: 1em;
     box-shadow: 2px 4px 4px 2px rgba(0, 0, 39, 0.397);
+    display: block;
 }
 
 .boiler-card header {
@@ -61,7 +61,7 @@ h2 {
 
 .boiler-card-gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 .boiler-card button {

@@ -1,8 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
 const mongoose = require("mongoose");
 
-require("dotenv").config();
+require("dotenv").config(
+  {
+    'path': path.join(__dirname, '.env')
+  }
+);
 // environment variables:
 //  why: you don't want other people to have access to your db, so you store the uri in an .env
 
