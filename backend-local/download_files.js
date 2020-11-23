@@ -6,7 +6,7 @@ const exec = require("child_process").exec;
 function get_git_repo(url, dir) {
   const folderName = path.basename(url, path.extname(url));
   const fullPath = path.join(dir, folderName);
-  exec(`git clone ${url} ${fullPath}`, function (err, stdout, stderr) {
+  exec(`git clone ${url}.git "${fullPath}"`, function (err, stdout, stderr) {
     console.log(stdout, err, stderr);
   });
 }
