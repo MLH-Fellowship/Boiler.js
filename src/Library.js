@@ -1,11 +1,22 @@
 import { Component } from "react";
 import "./Library.css";
 
+class BoilerHeader extends Component {
+    render() {
+    return (
+    <header className="boiler-header">
+        <h1>Boiler.js <span className="subtitle">Template Library</span></h1>
+    </header>
+    )
+    }
+}
+
 class BoilerGallery extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            boilers: []
+            boilers: [
+            ]
         };
         this.refreshBoilers();
     }
@@ -31,11 +42,11 @@ class BoilerCard extends Component {
                 <aside>Type: {this.props.type}</aside>
             </header>
             <section className="card-body">
-                <h3>{this.props.repo}</h3>
+                <span>{this.props.repo}</span>
                 <p>{this.props.body}</p>
                 <FavoriteButton id={ this.props._id }></FavoriteButton>
                 <DeployButton id={ this.props._id }></DeployButton>
-                <DownloadButton id={ this.props._id }></DownloadButton>
+                {/* <DownloadButton id={ this.props._id }></DownloadButton> */}
             </section>
         </article>;
         return element
@@ -52,8 +63,9 @@ class FavoriteButton extends Component {
 }
 
 class DeployButton extends Component {
-    deployLink(name, event) {
-        console.log("Deploy", name);
+    deployLink(id, event) {
+        console.log("Deploying", id);
+        fetch(`http://localhost:5000/boilers/deploy/${id}`)
     }
     render() {
         return <button onClick={(e) => this.deployLink(this.props.id, e)}>Deploy</button>;
@@ -69,4 +81,4 @@ class DownloadButton extends Component {
     }
 }
 
-export {BoilerGallery, BoilerCard, DeployButton, FavoriteButton};
+export {BoilerGallery, BoilerCard, DeployButton, FavoriteButton, BoilerHeader};

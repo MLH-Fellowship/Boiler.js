@@ -7,7 +7,8 @@
   "scripts": {
     "start": "electron .",
     "build": "npx react-scripts build",
-    "develop": "npx react-scripts start"
+    "develop": "npx react-scripts start",
+    "try": "npm run build && npm run start"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [

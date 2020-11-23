@@ -7,7 +7,7 @@ require("dotenv").config();
 //  why: you don't want other people to have access to your db, so you store the uri in an .env
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000"}));
 app.use(express.json()); 
 // for parsing json
 

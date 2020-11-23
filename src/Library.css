@@ -1,9 +1,35 @@
 * {
-    --primary-bgcolor: #F1FAEE;
+    --primary-bgcolor: #e6fffc;
     --secondary-bgcolor: #A8DADC;
     --primary-fgcolor: #1D3557;
     --secondary-fgcolor: #324766;
     --accent-color: #E63946;
+}
+
+body {
+    background-color: var(--primary-bgcolor);
+    color: var(--primary-fgcolor);
+    margin: 0;
+}
+
+
+.boiler-header {
+    background-color: var(--secondary-fgcolor);
+    color: var(--primary-bgcolor);
+    margin: 0;
+    padding: 1rem;
+}
+
+h1 {
+    background-clip: border-box;
+    height: auto;
+    line-height: 1.5em;
+    margin: 0
+}
+
+span.subtitle {
+    font-weight: lighter;
+    color: var(--secondary-bgcolor);
 }
 
 h2 {
@@ -13,13 +39,14 @@ h2 {
 
 .boiler-card {
     text-align: left;
-    background-color: var(--primary-bgcolor);
+    background-color: white;
     color: var(--primary-fgcolor);
     width: fit-content;
     margin: 1em;
+    box-shadow: 2px 4px 4px 2px rgba(0, 0, 39, 0.397);
 }
 
-header {
+.boiler-card header {
     text-align: center;
     font-size: 12pt;
     background-color: var(--secondary-bgcolor);
@@ -30,4 +57,17 @@ header {
 
 .card-body {
     margin: 1em;
+}
+
+.boiler-card-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.boiler-card button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    margin: .2em;
+    padding: .5em;
 }
