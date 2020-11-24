@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const get_git_repo = require("../../backend-local/download_files");
 let Boiler = require("../models/boilers.models");
-const path = require('path');
-const os = require('os');
+const path = require("path");
+const os = require("os");
 
 //connecting to db, init. gridstorage and creating a storage
 const multer = require("multer");
@@ -66,13 +66,12 @@ router.route("/").get((req, res) => {
 
 // POST add new boiler
 router.route("/").post((req, res) => {
-  const { type, name, directions, repo, commands } = req.body;
+  const { type, name, directions, repo, commands, description } = req.body;
   const newBoiler = new Boiler({
     type,
     image: "",
     name,
     directions,
-    type,
     repo,
     commands,
     description,
@@ -85,14 +84,14 @@ router.route("/").post((req, res) => {
     .catch((err) => res.status(400).json("error: " + err));
 });
 
-// GET exisitng boiler
+// GET existing boiler
 router.route("/:id").get((req, res) => {
   Boiler.findById(req.params.id)
     .then((boiler) => res.json(boiler))
     .catch((err) => res.status(400).json("error: " + err));
 });
 
-// DELETE exisitng boiler
+// DELETE existing boiler
 router.route("/:id").delete((req, res) => {
   Boiler.findById(req.params.id)
     .then(() => res.json("boiler deleted!"))
@@ -143,10 +142,10 @@ router.post("/delete/:id", (req, res) => {
 });
 
 router.get("/deploy/:id", (req, res) => {
-  const boilerPath = path.join(os.homedir(), 'Boilers')
+  const boilerPath = path.join(os.homedir(), "Boilers")
   Boiler.findById(req.params.id)
-  .then(res => get_git_repo(res.repo, boilerPath))
-  .catch(e => console.log(e));
+    .then(res => get_git_repo(res.repo, boilerPath))
+    .catch(e => console.log(e));
 });
 
 module.exports = router;

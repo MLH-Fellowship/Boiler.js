@@ -1,19 +1,20 @@
 const express = require("express");
+var bodyParser = require("body-parser");
 const cors = require("cors");
-const path = require('path');
+const path = require("path");
 const mongoose = require("mongoose");
 
 require("dotenv").config(
   {
-    'path': path.join(__dirname, '.env')
+    "path": path.join(__dirname, ".env")
   }
 );
 // environment variables:
-//  why: you don't want other people to have access to your db, so you store the uri in an .env
+//  why: you don"t want other people to have access to your db, so you store the uri in an .env
 
 const app = express();
-app.use(cors({ origin: "http://localhost:3000"}));
-app.use(express.json()); 
+app.use(cors({ origin: "http://localhost:3000" }));
+app.use(express.json());
 // for parsing json
 
 const uri = process.env.ATLAS_URI;

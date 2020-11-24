@@ -1,12 +1,12 @@
-const {MongoClient} = require('mongodb');
+const { MongoClient } = require("mongodb");
 
-async function main(){
+async function main() {
     const uri = "mongodb+srv://hi:hi@ranger.lay9i.mongodb.net/?retryWrites=true&w=majority";
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true})
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     try {
         await client.connect();
         await listDatabases(client);
-        
+
         /*
         await createListing(client,
             {
@@ -31,26 +31,26 @@ async function main(){
         */
 
         // await findListings(client);
-        
+
         /*
         await findOneListingByName(client, "Jose");
         await updateListingByName(client, "Jose", {name: "Jose", age: 17});
         await findOneListingByName(client, "Jose");
         */
-        
+
         /*
         await findOneListingByName(client, "Jose");
         await upsertListingByName(client, "Kakowin",
             {name: "Kakowin", age: 3});
         */
 
-       // await updateAllListingsToHavePropertyType(client);
-       
-       // await deleteListingByName(client, "DJ Kareb");
+        // await updateAllListingsToHavePropertyType(client);
 
-       // await deleteListings(client, 30)
+        // await deleteListingByName(client, "DJ Kareb");
 
-    } catch (e){
+        // await deleteListings(client, 30)
+
+    } catch (e) {
         console.error(e);
     } finally {
         await client.close();
@@ -59,7 +59,7 @@ async function main(){
 
 main().catch(console.err);
 
-async function listDatabases(client){
+async function listDatabases(client) {
     const databasesList = await client.db().admin().listDatabases();
 
     console.log("Databases:");
@@ -67,7 +67,7 @@ async function listDatabases(client){
 };
 
 // Create
-async function createListing(client, newListing){
+async function createListing(client, newListing) {
     const result = await client.db("firstCollection").collection("book").insertOne(newListing);
     console.log(`New listing created with the following id: ${result.insertedId}`);
 };
@@ -81,74 +81,74 @@ async function createMultipleListings(client, newListings) {
 // Read
 async function findOneListingByName(client, nameOfListing) {
     const result = await client.db("newCollection").collection("books")
-                        .findOne({ name: nameOfListing });
+        .findOne({ name: nameOfListing });
 
     if (result) {
-        console.log(`Found a listing in the collection with the name '${nameOfListing}':`);
+        console.log(`Found a listing in the collection with the name "${nameOfListing}":`);
         console.log(result);
     } else {
-        console.log(`No listings found with the name '${nameOfListing}'`);
+        console.log(`No listings found with the name "${nameOfListing}"`);
     }
 }
 
-async function findListings(client, {minAge = 30} = {}){
+async function findListings(client, { minAge = 30 } = {}) {
     const cursor = client.db("newCollection").collection("books").find({
-        age: {$gte: minAge}
+        age: { $gte: minAge }
     })
-    .sort({age: 1 })
-    .limit(10);
+        .sort({ age: 1 })
+        .limit(10);
 
     const results = await cursor.toArray();
     console.log(results);
 };
 
 // Update
-async function updateListingByName(client, nameOfDoc, updateDoc){
+async function updateListingByName(client, nameOfDoc, updateDoc) {
     result = await client.db("newCollection").collection("books")
         .updateOne(
-            {name: nameOfDoc},
-            {$set: updateDoc},
-            {upsert: true});
+            { name: nameOfDoc },
+            { $set: updateDoc },
+            { upsert: true });
 
     console.log(`${result.matchedCount} document(s) matched the query criteria`);
     console.log(`${result.modifiedCount} document(s) was/were updated`);
 }
 
-async function upsertListingByName(client, nameOfDoc, updateDoc){
+async function upsertListingByName(client, nameOfDoc, updateDoc) {
     result = await client.db("newCollection").collection("books")
         .updateOne(
-            {name: nameOfDoc},
-            {$set: updateDoc},
-            {upsert: true});
+            { name: nameOfDoc },
+            { $set: updateDoc },
+            { upsert: true });
 
     console.log(`${result.matchedCount} document(s) matched the query criteria`);
     if (result.upsertedCount > 0) {
         console.log(`One document was inserted with the id ${result.upsertedId._id}`)
     } else {
         console.log(`${result.modifiedCount} document(s) was/were updated`);
-    }   
+    }
 }
 
-async function updateAllListingsToHavePropertyType(client){
+async function updateAllListingsToHavePropertyType(client) {
     const result = await client.db("newCollection").collection("books")
-        .updateMany({property_type: {$exists: false}},
-            {$set: {property_type: "Kaleeb"}});
+        .updateMany({ property_type: { $exists: false } },
+            { $set: { property_type: "Kaleeb" } });
     console.log(`${result.matchedCount} document(s) matched the query criteria`);
     console.log(`${result.modifiedCount} document(s) was/were updated`);
-    };
+};
 
 // Delete
 
-async function deleteListingByName(client, nameOfDoc){
+async function deleteListingByName(client, nameOfDoc) {
     const result = await client.db("newCollection").collection("books")
-        .deleteOne({name: nameOfDoc});
-    
+        .deleteOne({ name: nameOfDoc });
+
     console.log(`${result.deletedCount} document(s) was/were deleted`);
 }
 
-async function deleteListings(client, age){
+async function deleteListings(client, age) {
     const result = await client.db("newCollection").collection("books")
-        .deleteMany({"age": {$lt: age}});
-    
+        .deleteMany({ "age": { $lt: age } });
+
     console.log(`${result.deletedCount} document(s) was/were deleted`);
 }
