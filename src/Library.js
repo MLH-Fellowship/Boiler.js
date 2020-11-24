@@ -3,11 +3,11 @@ import "./Library.css";
 
 class BoilerHeader extends Component {
     render() {
-    return (
-    <header className="boiler-header">
-        <h1>Boiler.js <span className="subtitle">Template Library</span></h1>
-    </header>
-    )
+        return (
+            <header className="boiler-header">
+                <h1>Boiler.js <span className="subtitle">Template Library</span></h1>
+            </header>
+        )
     }
 }
 
@@ -22,7 +22,7 @@ class BoilerGallery extends Component {
     }
 
     async refreshBoilers() {
-        await fetch('http://localhost:5000/boilers').then(res => res.json()).then(json => this.setState({boilers: json}))
+        await fetch('http://localhost:5000/boilers').then(res => res.json()).then(json => this.setState({ boilers: json }))
     }
 
     render() {
@@ -38,14 +38,14 @@ class BoilerCard extends Component {
     render() {
         let element = <article className="boiler-card">
             <header>
-                <h2>{this.props.name}</h2>
-                <aside>Type: {this.props.type}</aside>
+                <p className="card-title">{this.props.name}</p>
+                <p className="card-subtitle">{this.props.type}</p>
             </header>
             <section className="card-body">
-                <span>{this.props.repo}</span>
+                <span>{this.props.description}</span>
                 <p>{this.props.body}</p>
-                <FavoriteButton id={ this.props._id }></FavoriteButton>
-                <DeployButton id={ this.props._id }></DeployButton>
+                <FavoriteButton id={this.props._id}></FavoriteButton>
+                <DeployButton id={this.props._id}></DeployButton>
                 {/* <DownloadButton id={ this.props._id }></DownloadButton> */}
             </section>
         </article>;
@@ -81,4 +81,4 @@ class DownloadButton extends Component {
     }
 }
 
-export {BoilerGallery, BoilerCard, DeployButton, FavoriteButton, BoilerHeader};
+export { BoilerGallery, BoilerCard, DeployButton, FavoriteButton, BoilerHeader };

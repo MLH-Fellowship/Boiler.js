@@ -1,9 +1,11 @@
 * {
-    --primary-bgcolor: #e6fffc;
-    --secondary-bgcolor: #A8DADC;
-    --primary-fgcolor: #1D3557;
-    --secondary-fgcolor: #324766;
-    --accent-color: #E63946;
+    --primary-bgcolor: #2b2b2b;
+    --primary-fontcolor: white;
+    --secondary-bgcolor: white;
+    --primary-fgcolor: #4202ff;
+    --secondary-fgcolor: #1D3557;
+    --button-color: #230090;
+    --button-hover-color: #1f007f;
 }
 
 body {
@@ -14,8 +16,8 @@ body {
 
 
 .boiler-header {
-    background-color: var(--secondary-fgcolor);
-    color: var(--primary-bgcolor);
+    background-color: var(--primary-bgcolor);
+    color: var(--primary-fontcolor);
     margin: 0;
     padding: 1rem;
 }
@@ -32,31 +34,45 @@ span.subtitle {
     color: var(--secondary-bgcolor);
 }
 
-h2 {
-    color: var(--primary-fgcolor);
-    margin: .2em;
-}
-
 .boiler-card {
     text-align: left;
-    background-color: white;
-    color: var(--primary-fgcolor);
+    background-color: var(--primary-fgcolor);
+    color: var(--primary-fontcolor);
     margin: 1em;
-    box-shadow: 2px 4px 4px 2px rgba(0, 0, 39, 0.397);
+    /* box-shadow: 0 18px 18px -18px #ebedf5; */
+    border-radius: 10px 10px 10px 10px;
     display: block;
 }
 
 .boiler-card header {
     text-align: center;
     font-size: 12pt;
-    background-color: var(--secondary-bgcolor);
+    /* background-color: var(--secondary-bgcolor); */
     margin: 0;
+    border-radius: 10px 10px;
     padding-bottom: 1rem;
     padding-top: 1rem;
 }
 
+.card-title, .card-subtitle {
+    color: var(--primary-fontcolor);
+    margin: 0;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-subtitle {
+    color: #bccaff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
 .card-body {
-    margin: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
 }
 
 .boiler-card-gallery {
@@ -65,9 +81,21 @@ h2 {
 }
 
 .boiler-card button {
-    background-color: var(--accent-color);
-    color: white;
+    background-color: var(--button-color);
+    color: #fff;
     border: none;
     margin: .2em;
-    padding: .5em;
+    padding-left: 1.4em;
+    padding-right: 1.4em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    border-radius: 18px 18px 18px 18px;
+}
+
+button { 
+    cursor:pointer; 
+}
+
+button:hover { 
+    background-color:var(--button-hover-color);
 }
