@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const get_git_repo = require("../../backend-local/download_files");
 let Boiler = require("../models/boilers.models");
-const path = require('path');
-const os = require('os');
+const path = require("path");
+const os = require("os");
 
 //connecting to db, init. gridstorage and creating a storage
 const multer = require("multer");
@@ -101,10 +101,24 @@ router.route("/:id").delete((req, res) => {
 
 /* DB QUERY ROUTES */
 // GET exisitng boiler
-router.route("/query/:input").get((req, res) => {
-  Boiler.find({"name": /req.params.input/})
-    .then((boiler) => res.json(boiler))
-    .catch((err) => res.status(400).json("error: " + err));
+router.route("/query/:input/").get((req, res) => {
+  const query = req.params.input;
+  console.log(query)
+  if (query === "") {
+    Boiler.find()
+      .then((boilers) => res.json(boilers))
+      .catch((err) => res.status(400).json("error: " + err));
+  } else {
+    Boiler.find({
+      $or: [
+        ({ name: { $regex: query, $options: "i" } },
+        { type: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } }),
+      ],
+    })
+      .then((boiler) => res.json(boiler))
+      .catch((err) => res.status(400).json("error: " + err));
+  }
 });
 
 /* FILES AND BOILER ROUTES */
@@ -151,10 +165,10 @@ router.post("/delete/:id", (req, res) => {
 });
 
 router.get("/deploy/:id", (req, res) => {
-  const boilerPath = path.join(os.homedir(), 'Boilers')
+  const boilerPath = path.join(os.homedir(), "Boilers");
   Boiler.findById(req.params.id)
-  .then(res => get_git_repo(res.repo, boilerPath))
-  .catch(e => console.log(e));
+    .then((res) => get_git_repo(res.repo, boilerPath))
+    .catch((e) => console.log(e));
 });
 
 module.exports = router;
