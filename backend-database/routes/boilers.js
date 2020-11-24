@@ -146,9 +146,6 @@ router.get("/deploy/:id", (req, res) => {
   const boilerPath = path.join(os.homedir(), 'Boilers')
   Boiler.findById(req.params.id)
   .then(res => get_git_repo(res.repo, boilerPath, res.commands))
- // .then(res => get_git_repo.get_repo(res.repo, boilerPath))
- // .then(res => console.log("Log" + res))
- // .then(res => get_git_repo.run(boilerPath, res.commands))
   .catch(e => console.log(e));
 });
 
