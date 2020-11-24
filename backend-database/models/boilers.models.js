@@ -9,6 +9,7 @@
    directions: Array,
    repo: String,
    commands: Array,
+   description: String,
    files: [String]
  });
 

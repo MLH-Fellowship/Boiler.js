@@ -75,6 +75,7 @@ router.route("/").post((req, res) => {
     type,
     repo,
     commands,
+    description,
     files: [],
   });
 
