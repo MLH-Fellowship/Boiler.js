@@ -46,7 +46,6 @@ class BoilerGallery extends Component {
       boilers: [],
       search: "",
     };
-    // this.refreshBoilers();
   }
 
   async componentWillReceiveProps(nextProps) {
