@@ -103,7 +103,6 @@ router.route("/:id").delete((req, res) => {
 // GET exisitng boiler
 router.route("/query/:input/").get((req, res) => {
   const query = req.params.input;
-  console.log(query)
   if (query === "") {
     Boiler.find()
       .then((boilers) => res.json(boilers))
