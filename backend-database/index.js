@@ -1,13 +1,18 @@
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
 const mongoose = require("mongoose");
 
-require("dotenv").config();
+require("dotenv").config(
+  {
+    'path': path.join(__dirname, '.env')
+  }
+);
 // environment variables:
 //  why: you don't want other people to have access to your db, so you store the uri in an .env
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000"}));
 app.use(express.json()); 
 // for parsing json
 
@@ -29,7 +34,7 @@ connection.once("open", () => {
 // connection started
 
 // add routes here:
-const BoilerRoutes = require("./routes/boilers");
+const BoilerRoutes = require(`${__dirname}/routes/boilers`);
 // directory: routes/user.js
 app.use("/boilers", BoilerRoutes);
 // all routes defined in UserRouter will start with /user/*

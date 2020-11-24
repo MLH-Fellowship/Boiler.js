@@ -1,10 +1,14 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "boiler.js",
+  "version": "0.0.1",
+  "description": "A boilerplate library and setup program.",
   "main": "main.js",
+  "homepage": "./",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "npx react-scripts build",
+    "develop": "npx react-scripts start",
+    "try": "npm run build && npm run start"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -18,5 +22,32 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^11.0.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "gridfs-stream": "^1.1.1",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.10.15",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^4.2.0",
+    "node": "^15.2.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.0",
+    "web-vitals": "^0.2.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

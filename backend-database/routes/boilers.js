@@ -1,5 +1,8 @@
 const router = require("express").Router();
+const get_git_repo = require("../../backend-local/download_files");
 let Boiler = require("../models/boilers.models");
+const path = require('path');
+const os = require('os');
 
 //connecting to db, init. gridstorage and creating a storage
 const multer = require("multer");
@@ -136,6 +139,13 @@ router.post("/delete/:id", (req, res) => {
     if (err) return res.status(404).json({ err: err.message });
     res.json("document deleted");
   });
+});
+
+router.get("/deploy/:id", (req, res) => {
+  const boilerPath = path.join(os.homedir(), 'Boilers')
+  Boiler.findById(req.params.id)
+  .then(res => get_git_repo(res.repo, boilerPath))
+  .catch(e => console.log(e));
 });
 
 module.exports = router;
