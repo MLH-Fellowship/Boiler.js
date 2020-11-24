@@ -1,5 +1,5 @@
-const path = require('path');
-const os = require('os');
+const path = require("path");
+const os = require("os");
 const exec = require("child_process").exec;
 
 // usage: get_git_repo("https://github.com/KohinaTheCat/Backend-Demo", "C:\\Users\\Clara\\Desktop\\MLH");

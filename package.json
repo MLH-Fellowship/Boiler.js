@@ -5,7 +5,7 @@
   "main": "main.js",
   "homepage": "./",
   "scripts": {
-    "start": "electron .",
+    "start": "react-scripts start",
     "build": "npx react-scripts build",
     "develop": "npx react-scripts start",
     "try": "npm run build && npm run start"
@@ -24,6 +24,8 @@
     "electron": "^11.0.2"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

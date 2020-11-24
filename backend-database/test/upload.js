@@ -75,19 +75,19 @@ module.exports = {
 // main(params);
 
 /*
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const uri = `mongodb+srv://hi:hi@ranger.lay9i.mongodb.net/testBoiler?retryWrites=true&w=majority`;
 const connectionParams={
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true 
-};   
+    useUnifiedTopology: true
+};
 
 // Connect to Mongoose
 mongoose.connect(uri,connectionParams)
     .then( () => {
-        console.log('Connected to database ')
+        console.log("Connected to database ")
     })
     .catch( (err) => {
         console.error(`Error connecting to the database. \n${err}`);
@@ -110,16 +110,16 @@ const Model = mongoose.model
 const boilerSchema = Model(params.colName, boilSchema);
 
 const boiler = new boilerSchema({
-    type: 'frontend',
-    image: 'bobby',
-    name: 'John',
+    type: "frontend",
+    image: "bobby",
+    name: "John",
     directions: [
-        'hi', 'bye'
+        "hi", "bye"
     ],
-    type: 'backend',
-    repo: 'https://google.com',
+    type: "backend",
+    repo: "https://google.com",
     commands: [
-        'hi', 'bye'
+        "hi", "bye"
     ]
 })
 
@@ -128,13 +128,13 @@ boiler.save();
 
 /*
 const front =  new frontSchema({
-    type: 'frontend',
+    type: "frontend",
     image: params.image,
     name: params.name,
     directions: params.directions
 });
 const back = new backSchema({
-    type: 'backend',
+    type: "backend",
     repo: params.repo,
     commands: params.commands
 });
@@ -149,30 +149,30 @@ let create = async function create(params){
     const connectionParams={
         useNewUrlParser: true,
         useCreateIndex: true,
-        useUnifiedTopology: true 
-    };    
+        useUnifiedTopology: true
+    };
     try {
         // const fontSchema, backSchema = await connect(uri, connectionParams, params.colName);
 
         const front = await new schemas[0]({
-            type: 'frontend',
+            type: "frontend",
             image: params.image,
             name: params.name,
             directions: params.directions
         });
         const back = await new schemas[1]({
-            type: 'backend',
+            type: "backend",
             repo: params.repo,
             commands: params.commands
         });
         await front.save();
         await back.save();
-        
+
 
     } finally {
         mongoose.connection.close(function(){
             console.log("Mongoose default connection is disconnected due to application termination");
-        });        
+        });
     }
 }
 
@@ -180,7 +180,7 @@ async function connect(uri, connectionParams, name){
     // Connect to Mongoose
     mongoose.connect(uri,connectionParams)
     .then( () => {
-        console.log('Connected to database ')
+        console.log("Connected to database ")
     })
     .catch( (err) => {
         console.error(`Error connecting to the database. \n${err}`);
