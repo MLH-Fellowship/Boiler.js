@@ -99,6 +99,14 @@ router.route("/:id").delete((req, res) => {
     .catch((err) => res.status(400).json("error: " + err));
 });
 
+/* DB QUERY ROUTES */
+// GET exisitng boiler
+router.route("/query/:input").get((req, res) => {
+  Boiler.find({"name": /req.params.input/})
+    .then((boiler) => res.json(boiler))
+    .catch((err) => res.status(400).json("error: " + err));
+});
+
 /* FILES AND BOILER ROUTES */
 
 // POST add a image to a boiler
