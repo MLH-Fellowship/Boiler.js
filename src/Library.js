@@ -1,15 +1,40 @@
+import { throws } from "assert";
 import { Component } from "react";
 import "./Library.css";
 
 class BoilerHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: " ",
+    };
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ search: e.target.value });
+  }
   render() {
     return (
-      <header className="boiler-header">
-        <h1>
-          Boiler.js <span className="subtitle">Template Library</span>
-        </h1>
-        <SearchBar />
-      </header>
+      <>
+        <header className="boiler-header">
+          <h1>
+            Boiler.js <span className="subtitle">Template Library</span>
+          </h1>
+
+          <form>
+            <input
+              type="text"
+              id="search"
+              name="search"
+              onChange={this.onChange}
+              placeholder="ex. React, Flask, Angular..."
+            ></input>
+          </form>
+        </header>
+
+        <BoilerGallery query={this.state.search} />
+      </>
     );
   }
 }
@@ -19,14 +44,24 @@ class BoilerGallery extends Component {
     super(props);
     this.state = {
       boilers: [],
+      search: "",
     };
-    this.refreshBoilers();
+    // this.refreshBoilers();
   }
 
-  async refreshBoilers() {
-    await fetch("http://localhost:5000/boilers")
-      .then((res) => res.json())
-      .then((json) => this.setState({ boilers: json }));
+  async componentWillReceiveProps(nextProps) {
+    if (nextProps.query !== this.state.search) {
+      this.setState({ search: nextProps.query });
+      console.log(this.props);
+      var api = this.props.query;
+      if (api === undefined || api === "")
+        api = "http://localhost:5000/boilers/query/ /";
+      else api = `http://localhost:5000/boilers/query/${this.props.query}/`;
+
+      await fetch(api)
+        .then((res) => res.json())
+        .then((json) => this.setState({ boilers: json }));
+    }
   }
 
   render() {
@@ -99,29 +134,10 @@ class DownloadButton extends Component {
   }
 }
 
-class SearchBar extends Component {
-  downloadLink(name, event) {
-    console.log("Download", name);
-  }
-  render() {
-    return (
-      <form>
-        <input
-          type="text"
-          id="search"
-          name="search"
-          placeholder="ex. React, Flask, Angular..."
-        ></input>
-      </form>
-    );
-  }
-}
-
 export {
   BoilerGallery,
   BoilerCard,
   DeployButton,
   FavoriteButton,
   BoilerHeader,
-  SearchBar,
 };

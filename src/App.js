@@ -6,7 +6,6 @@ function App() {
   return (
     <body>
       <BoilerHeader></BoilerHeader>
-      <BoilerGallery></BoilerGallery>
     </body>
   )
 }
