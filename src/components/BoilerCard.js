@@ -36,7 +36,7 @@ class DeployButton extends React.Component {
         fetch(`http://localhost:5000/boilers/deploy/${id}`)
     }
     render() {
-        return <button onClick={(e) => this.deployLink(this.props.id, e)}>Deploy</button>;
+        return <button onClick={(e) => this.deployLink(this.props.id, e)}>Clone from GitHub</button>;
     }
 }
 
