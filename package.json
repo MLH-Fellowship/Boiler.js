@@ -5,7 +5,9 @@
   "main": "main.js",
   "homepage": "./",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "electron .",
+    "react": "react-scripts start",
+    "express": "cd backend-database && node index.js",
     "build": "npx react-scripts build",
     "develop": "npx react-scripts start",
     "try": "npm run build && npm run start"
@@ -30,6 +32,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "gridfs-stream": "^1.1.1",
+    "material-ui": "^0.20.2",
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.15",
     "multer": "^1.4.2",
