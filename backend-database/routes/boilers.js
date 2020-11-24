@@ -66,13 +66,12 @@ router.route("/").get((req, res) => {
 
 // POST add new boiler
 router.route("/").post((req, res) => {
-  const { type, name, directions, repo, commands } = req.body;
+  const { type, name, directions, repo, commands, description } = req.body;
   const newBoiler = new Boiler({
     type,
     image: "",
     name,
     directions,
-    type,
     repo,
     commands,
     description,
@@ -85,14 +84,14 @@ router.route("/").post((req, res) => {
     .catch((err) => res.status(400).json("error: " + err));
 });
 
-// GET exisitng boiler
+// GET existing boiler
 router.route("/:id").get((req, res) => {
   Boiler.findById(req.params.id)
     .then((boiler) => res.json(boiler))
     .catch((err) => res.status(400).json("error: " + err));
 });
 
-// DELETE exisitng boiler
+// DELETE existing boiler
 router.route("/:id").delete((req, res) => {
   Boiler.findById(req.params.id)
     .then(() => res.json("boiler deleted!"))

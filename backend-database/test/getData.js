@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-// const files = require('./test/files');
-// let backSchema = require('./test/schema')
+// const files = require("./test/files");
+// let backSchema = require("./test/schema")
 const Schema = mongoose.Schema;
 
 let back = async function getBackend(docName) {
@@ -87,7 +87,7 @@ async function connect(uri, connectionParams) {
     });
 }
 
-// back('sampleBoilerLolz');
+// back("sampleBoilerLolz");
 // front();
 
 module.exports = {

@@ -6,6 +6,8 @@
   "homepage": "./",
   "scripts": {
     "start": "electron .",
+    "react": "react-scripts start",
+    "express": "cd backend-database && node index.js",
     "build": "npx react-scripts build",
     "develop": "npx react-scripts start",
     "try": "npm run build && npm run start"
@@ -24,10 +26,13 @@
     "electron": "^11.0.2"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "gridfs-stream": "^1.1.1",
+    "material-ui": "^0.20.2",
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.15",
     "multer": "^1.4.2",
