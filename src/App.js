@@ -1,14 +1,20 @@
-import { BoilerGallery, BoilerHeader } from './Library';
-import './App.css';
-import { render } from 'react-dom';
+import "./App.css";
+import { render } from "react-dom";
+import theme from "./theme";
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+
+import BoilerHeader from "./components/BoilerHeader";
+import BoilerGalleryContainer from "./components/BoilerGalleryContainer";
 
 function App() {
   return (
-    <body>
-      <BoilerHeader></BoilerHeader>
-      <BoilerGallery></BoilerGallery>
-    </body>
-  )
+    <MuiThemeProvider theme={theme}>
+      <body>
+        <BoilerHeader />
+        <BoilerGalleryContainer />
+      </body>
+    </MuiThemeProvider>
+  );
 }
 
 export default App;
