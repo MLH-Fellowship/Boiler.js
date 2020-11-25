@@ -3,6 +3,10 @@ import Snackbar from "material-ui/Snackbar";
 import "./Library.css";
 import { MuiThemeProvider } from "material-ui/styles";
 
+async function setupCommands(id){
+    return "bobbby";
+}
+
 class BoilerCard extends React.Component {
     constructor(props) {
         super(props);
@@ -12,6 +16,9 @@ class BoilerCard extends React.Component {
      onButtonFunctionComplete = (snackbarOpen, snackbarContent) => {
          console.log("Snackbar:", snackbarOpen, "SnackbarContent:", snackbarContent);
          this.setState({snackbarOpen: snackbarOpen, snackbarContent: snackbarContent});
+         
+         let content = setupCommands(snackbarContent);
+         // this.setState({snackbarOpen: true, snackbarContent: content});
      };
 
     render() {
@@ -47,7 +54,10 @@ class FavoriteButton extends React.Component {
 
 class DeployButton extends React.Component {
     async deployLink(id, event) {
-        let response = await (await fetch(`http://localhost:5000/boilers/deploy/${id}`)).json();
+        let resa = await (await fetch(`http://localhost:5000/boilers/deploy/${id}`)).json();
+        console.log("Hi");
+        let response = await (await fetch(`http://localhost:5000/boilers/setup/${id}`)).json();
+        console.log("Response");
         // console.log("Deploying", id);
         // fetch(`http://localhost:5000/boilers/deploy/${id}`)
         this.props.callback(true, response.message)
