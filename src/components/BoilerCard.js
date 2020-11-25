@@ -38,14 +38,15 @@ class BoilerCard extends React.Component {
                     <p className="card-subtitle">{this.props.type}</p>
                 </header>
                 <section className="card-body">
-                    <span>{this.props.description}</span>
-                    <p>{this.props.body}</p>
-                    <FavoriteButton id={this.props._id}></FavoriteButton>
-                    <DeployButton callback={this.onButtonFunctionComplete} id={this.props._id}></DeployButton>
-                    {/* <DownloadButton id={ this.props._id }></DownloadButton> */}
+                    <p>{this.props.description}</p>
+                    <div className="card-button-array">
+                        <FavoriteButton id={this.props._id}></FavoriteButton>
+                        <DeployButton callback={this.onButtonFunctionComplete} id={this.props._id}></DeployButton>
+                        {/* <DownloadButton id={ this.props._id }></DownloadButton> */}
+                    </div>
                 </section>
                 <MuiThemeProvider>
-                        <Snackbar open={this.state.snackbarOpen} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} autoHideDuration={6000} message= {this.state.snackbarContent}></Snackbar>
+                        <Snackbar open={this.state.snackbarOpen} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} autoHideDuration={6000} className="card-snackbar"message={this.state.snackbarContent}></Snackbar>
                 </MuiThemeProvider>
             </article>;
         return element

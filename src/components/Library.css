@@ -38,6 +38,7 @@ span.subtitle {
 }
 
 .boiler-card {
+  position: relative;
   text-align: left;
   background-color: var(--primary-fgcolor);
   color: var(--primary-fontcolor);
@@ -45,6 +46,7 @@ span.subtitle {
   border-radius: 10px 10px 10px 10px;
   height: 100%;
   flex: 0 30.5%;
+  max-width: 70ch;
 }
 
 .boiler-card header {
@@ -77,12 +79,20 @@ span.subtitle {
   margin-left: 2em;
   margin-right: 2em;
   margin-bottom: 2em;
+  display: grid;
+}
+
+.card-body p {
+  width: auto;
+  font-size: 110%;
+  justify-self: center;
 }
 
 .boiler-card-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+  justify-items: center;
 }
 
 .boiler-card button {
@@ -95,6 +105,17 @@ span.subtitle {
   padding-bottom: 0.5em;
   padding-top: 0.5em;
   border-radius: 18px 18px 18px 18px;
+}
+
+.card-button-array {
+  position: absolute;
+  bottom: 1em;
+}
+
+.card-snackbar { 
+  width: max-content;
+  line-break: loose;
+  display: flex;
 }
 
 button {
