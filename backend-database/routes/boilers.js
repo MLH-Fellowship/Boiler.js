@@ -163,7 +163,7 @@ router.post("/delete/:id", (req, res) => {
 
 router.get("/deploy/:id", (req, res) => {
   // Compute path for a boiler.
-  const boilerPath = path.join(os.homedir(), "Boiler");
+  const boilerPath = path.join(os.homedir(), "Boilers");
   // Make a request to the database.
   let id = req.params.id;
   Boiler.findById(req.params.id)

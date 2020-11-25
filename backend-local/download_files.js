@@ -42,7 +42,7 @@ async function get_git_repo(url, dir, commands) {
 async function run_command(dirPath, command, commandNum) {
   // console.log("Dirpath", dirPath, 'commands', commands);
   // let commandString = commands.join(" && ");
-  const boilerPath = path.join(os.homedir(), "Boiler");
+  const boilerPath = path.join(os.homedir(), "Boilers");
   const finalPath = path.join(boilerPath, dirPath);
   let fullCommand = command[commandNum];
   console.log("Final", finalPath);
