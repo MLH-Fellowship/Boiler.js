@@ -1,5 +1,6 @@
 import React from "react";
 import Snackbar from "material-ui/Snackbar";
+import { withSnackbar } from 'notistack';
 import "./Library.css";
 import { MuiThemeProvider } from "material-ui/styles";
 
@@ -13,15 +14,18 @@ class BoilerCard extends React.Component {
     
     // Function runs after git repo is successfully downloaded
     async onButtonFunctionComplete(snackbarOpen, snackbarContent, id, path, commands) {
-        this.updateSnackbar(snackbarOpen, snackbarContent);
+        // this.updateSnackbar(snackbarOpen, snackbarContent);
+        this.props.enqueueSnackbar(snackbarContent);
         for await (let i of commands) {
             console.log(commands.indexOf(i));
             let snackbarUpdate = await secondFetch(id, path, commands.indexOf(i));
-            this.updateSnackbar(false, " ");
-            this.updateSnackbar(true, snackbarUpdate.message);     
+            // this.updateSnackbar(false, " ");
+            // this.updateSnackbar(true, snackbarUpdate.message);     
+            this.props.enqueueSnackbar(snackbarUpdate.message)
             console.log("Command", i);       
         }
-        this.updateSnackbar(true, "Commands are finished!");    
+        // this.updateSnackbar(true, "Commands are finished!");    
+        this.props.enqueueSnackbar('Commands finished!')
      };
     
     // Updates snackbar message
@@ -90,4 +94,4 @@ class DownloadButton extends React.Component {
     }
 }
 
-export default BoilerCard;
+export default withSnackbar(BoilerCard);
