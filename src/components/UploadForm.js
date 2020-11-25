@@ -54,6 +54,7 @@ export default function UploadForm({ setBoilers, boilers }) {
               label="Name"
               onChange={(e) => { setValues({ ...values, [e.target.id]: e.target.value }) }}
               fullWidth
+              variant="outlined" 
             />
             <TextField
               required
@@ -62,6 +63,7 @@ export default function UploadForm({ setBoilers, boilers }) {
               label="Type"
               onChange={(e) => { setValues({ ...values, [e.target.id]: e.target.value }) }}
               fullWidth
+              variant="outlined" 
             />
             <TextField
               required
@@ -71,6 +73,7 @@ export default function UploadForm({ setBoilers, boilers }) {
               label="Description"
               onChange={(e) => { setValues({ ...values, [e.target.id]: e.target.value }) }}
               fullWidth
+              variant="outlined" 
             />
             <TextField
               required
@@ -79,6 +82,17 @@ export default function UploadForm({ setBoilers, boilers }) {
               label="Link"
               onChange={(e) => { setValues({ ...values, [e.target.id]: e.target.value }) }}
               fullWidth
+              variant="outlined" 
+            />
+            <TextField
+              required
+              margin="dense"
+              id="commands"
+              label="Commands"
+              helperText="Enter it as a comma separated list, ie: cd frontend, npm i, cd .."
+              onChange={(e) => { setValues({ ...values, [e.target.id]: e.target.value }) }}
+              fullWidth
+              variant="outlined" 
             />
           </DialogContent>
           <DialogActions>

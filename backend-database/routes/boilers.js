@@ -66,7 +66,10 @@ router.route("/").get((req, res) => {
 
 // POST add new boiler
 router.route("/").post((req, res) => {
-  const { type, name, directions, repo, commands, description } = req.body;
+  const { type, name, directions, repo, description } = req.body;
+
+  const commands = req.body.commands.split(',');
+
   const newBoiler = new Boiler({
     type,
     image: "",
