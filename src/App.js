@@ -12,9 +12,9 @@ function App() {
       <body>
         <BoilerHeader />
         <BoilerGalleryContainer />
-      </body >
+      </body>
     </MuiThemeProvider>
-  )
+  );
 }
 
 export default App;

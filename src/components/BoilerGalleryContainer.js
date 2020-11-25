@@ -3,17 +3,25 @@ import "./Library.css";
 import BoilerGallery from "./BoilerGallery.js";
 import UploadForm from "./UploadForm";
 
-function BoilerGalleryContainer() {
+function BoilerGalleryContainer(props) {
   const [boilers, setBoilers] = useState([]);
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     const refreshBoilers = async () => {
-      const res = await fetch("http://localhost:5000/boilers");
-      const parseRes = await res.json();
+      var api = search;
+      if (api === undefined || api === "")
+        api = "http://localhost:5000/boilers/query/ /";
+      else api = `http://localhost:5000/boilers/query/${search}/`;
+
+      const res = await fetch(api)
+      const parseRes = await res.json()
+
       setBoilers(parseRes);
     }
     refreshBoilers();
-  }, []);
+  }, [search]);
+  
 
   return (
     <div className="wrapper">

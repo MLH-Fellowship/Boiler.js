@@ -98,6 +98,27 @@ router.route("/:id").delete((req, res) => {
     .catch((err) => res.status(400).json("error: " + err));
 });
 
+/* DB QUERY ROUTES */
+// GET exisitng boiler
+router.route("/query/:input/").get((req, res) => {
+  const query = req.params.input;
+  if (query === "") {
+    Boiler.find()
+      .then((boilers) => res.json(boilers))
+      .catch((err) => res.status(400).json("error: " + err));
+  } else {
+    Boiler.find({
+      $or: [
+        ({ name: { $regex: query, $options: "i" } },
+        { type: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } }),
+      ],
+    })
+      .then((boiler) => res.json(boiler))
+      .catch((err) => res.status(400).json("error: " + err));
+  }
+});
+
 /* FILES AND BOILER ROUTES */
 
 // POST add a image to a boiler
@@ -142,10 +163,10 @@ router.post("/delete/:id", (req, res) => {
 });
 
 router.get("/deploy/:id", (req, res) => {
-  const boilerPath = path.join(os.homedir(), "Boilers")
+  const boilerPath = path.join(os.homedir(), "Boilers");
   Boiler.findById(req.params.id)
-    .then(res => get_git_repo(res.repo, boilerPath))
-    .catch(e => console.log(e));
+    .then((res) => get_git_repo(res.repo, boilerPath))
+    .catch((e) => console.log(e));
 });
 
 module.exports = router;

@@ -1,102 +1,104 @@
 * {
-    --primary-bgcolor: #2b2b2b;
-    --primary-fontcolor: white;
-    --secondary-bgcolor: white;
-    --primary-fgcolor: #4202ff;
-    --secondary-fgcolor: #1D3557;
-    --button-color: #230090;
-    --button-hover-color: #1f007f;
+  --primary-bgcolor: #2b2b2b;
+  --primary-fontcolor: white;
+  --secondary-bgcolor: white;
+  --primary-fgcolor: #4202ff;
+  --secondary-fgcolor: #1d3557;
+  --button-color: #230090;
+  --button-hover-color: #1f007f;
 }
 
-body {
-    background-color: var(--primary-bgcolor);
-    color: var(--primary-fgcolor);
-    margin: 0;
-}
-
-.wrapper{
+.wrapper {
   padding: 2rem;
 }
 
+body {
+  background-color: var(--primary-bgcolor);
+  color: var(--primary-fgcolor);
+  margin: 0;
+}
+
 .boiler-header {
-    background-color: var(--primary-bgcolor);
-    color: var(--primary-fontcolor);
-    margin: 0;
-    padding: 1rem;
+  background-color: var(--primary-bgcolor);
+  color: var(--primary-fontcolor);
+  margin: 0;
+  padding: 1rem;
 }
 
 h1 {
-    background-clip: border-box;
-    height: auto;
-    line-height: 1.5em;
-    margin: 0
+  background-clip: border-box;
+  height: auto;
+  line-height: 1.5em;
+  margin: 0;
 }
 
 span.subtitle {
-    font-weight: lighter;
-    color: var(--secondary-bgcolor);
+  font-weight: lighter;
+  color: var(--secondary-bgcolor);
 }
 
 .boiler-card {
-    text-align: left;
-    background-color: var(--primary-fgcolor);
-    color: var(--primary-fontcolor);
-    margin: 1em;
-    /* box-shadow: 0 18px 18px -18px #ebedf5; */
-    border-radius: 10px 10px 10px 10px;
-    display: block;
+  text-align: left;
+  background-color: var(--primary-fgcolor);
+  color: var(--primary-fontcolor);
+  margin: 1em;
+  border-radius: 10px 10px 10px 10px;
+  width: 20rem;
 }
 
 .boiler-card header {
-    text-align: center;
-    font-size: 12pt;
-    /* background-color: var(--secondary-bgcolor); */
-    margin: 0;
-    border-radius: 10px 10px;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+  text-align: center;
+  font-size: 12pt;
+  /* background-color: var(--secondary-bgcolor); */
+  margin: 0;
+  border-radius: 10px 10px;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
-.card-title, .card-subtitle {
-    color: var(--primary-fontcolor);
-    margin: 0;
+.card-title,
+.card-subtitle {
+  color: var(--primary-fontcolor);
+  margin: 0;
 }
 
 .card-title {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .card-subtitle {
-    color: #bccaff;
-    font-weight: bold;
-    font-size: 14px;
+  color: #bccaff;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .card-body {
-    margin-left: 2em;
-    margin-right: 2em;
-    margin-bottom: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-bottom: 2em;
 }
 
 .boiler-card-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .boiler-card button {
-    background-color: var(--button-color);
-    color: #fff;
-    border: none;
-    margin: .2em;
-    padding-left: 1.4em;
-    padding-right: 1.4em;
-    padding-bottom: 0.5em;
-    padding-top: 0.5em;
-    border-radius: 18px 18px 18px 18px;
+  background-color: var(--button-color);
+  color: #fff;
+  border: none;
+  margin: 0.2em;
+  padding-left: 1.4em;
+  padding-right: 1.4em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  border-radius: 18px 18px 18px 18px;
 }
 
-button { 
-    cursor:pointer; 
+button {
+  cursor: pointer;
 }
 
 button:hover {
