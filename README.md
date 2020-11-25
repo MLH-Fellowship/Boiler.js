@@ -8,7 +8,9 @@
      <br/>
 </p>
 
-![](.\readme_imgs\main.PNG)
+<p align="center">
+     <img  src="./readme_imgs/main.PNG" alt="demo">
+</p>
 
 <br/>
 
@@ -49,8 +51,9 @@
 #### Uploading a Boiler:
 
 1. press the `+ New Boiler` Button
-
-![](.\readme_imgs\add_button.PNG)
+<p align="center">
+     <img  src="./readme_imgs/add_button.PNG" alt="demo">
+</p>
 
 2. fill in the required information in the modal
    - `Name`: refers to the name of your Boiler
@@ -58,7 +61,9 @@
    - `Description`: tell the world what your Boilerplate is for!
    - `Link`: to the Github repo. where your Boiler is saved
 
-![](.\readme_imgs\modal.PNG)
+<p align="center">
+     <img  src="./readme_imgs/modal.PNG" alt="demo">
+</p>
 
 3. Press `Create`, and you're done
 
@@ -68,11 +73,15 @@
 
 1. search for what kind of Boilerplate you want
 
-![](.\readme_imgs\search_bar.PNG)
+<p align="center">
+     <img  src="./readme_imgs/search_bar.PNG" alt="demo">
+</p>
 
 2. click the `Clone from Github` button, and all the work is done for you!
 
-![](.\readme_imgs\card.PNG)
+<p align="center">
+     <img  src="./readme_imgs/card.PNG" alt="demo">
+</p>
 
 <br/>
 
