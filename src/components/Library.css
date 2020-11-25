@@ -112,6 +112,12 @@ span.subtitle {
   bottom: 1em;
 }
 
+.card-snackbar { 
+  width: max-content;
+  line-break: loose;
+  display: flex;
+}
+
 button {
   cursor: pointer;
 }

@@ -46,7 +46,7 @@ class BoilerCard extends React.Component {
                     </div>
                 </section>
                 <MuiThemeProvider>
-                        <Snackbar open={this.state.snackbarOpen} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} autoHideDuration={6000} message= {this.state.snackbarContent}></Snackbar>
+                        <Snackbar open={this.state.snackbarOpen} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} autoHideDuration={6000} className="card-snackbar"message={this.state.snackbarContent}></Snackbar>
                 </MuiThemeProvider>
             </article>;
         return element
