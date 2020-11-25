@@ -105,8 +105,7 @@ button:hover {
   background-color: var(--button-hover-color);
 }
 
-input[type="text"],
-select {
+.input{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

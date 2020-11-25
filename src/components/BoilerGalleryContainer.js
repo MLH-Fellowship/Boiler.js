@@ -27,6 +27,7 @@ function BoilerGalleryContainer(props) {
     <div className="wrapper">
       <form>
         <input
+          className="input"
           type="text"
           id="search"
           name="search"
@@ -37,7 +38,7 @@ function BoilerGalleryContainer(props) {
       <UploadForm setBoilers={setBoilers} />
       <BoilerGallery values={boilers} />
     </div>
-  );
+  )
 
 }
 
