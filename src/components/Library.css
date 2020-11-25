@@ -43,7 +43,8 @@ span.subtitle {
   color: var(--primary-fontcolor);
   margin: 1em;
   border-radius: 10px 10px 10px 10px;
-  width: 20rem;
+  height: 100%;
+  flex: 0 30%;
 }
 
 .boiler-card header {
@@ -79,10 +80,9 @@ span.subtitle {
 }
 
 .boiler-card-gallery {
-  justify-content: flex-start;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  justify-content: space-between;
 }
 
 .boiler-card button {

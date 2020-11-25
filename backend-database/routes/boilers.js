@@ -109,9 +109,9 @@ router.route("/query/:input/").get((req, res) => {
   } else {
     Boiler.find({
       $or: [
-        ({ name: { $regex: query, $options: "i" } },
+        { name: { $regex: query, $options: "i" } },
         { type: { $regex: query, $options: "i" } },
-        { description: { $regex: query, $options: "i" } }),
+        { description: { $regex: query, $options: "i" } },
       ],
     })
       .then((boiler) => res.json(boiler))

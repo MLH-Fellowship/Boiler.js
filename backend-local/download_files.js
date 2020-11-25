@@ -40,16 +40,16 @@ function run_commands(dirPath, commands) {
   );
 }
 
-get_git_repo(
-  "https://github.com/KohinaTheCat/Backend-Demo",
-  "C:\\Users\\Clara\\Desktop\\MLH"
-);
-run_commands("C:\\Users\\Clara\\Desktop\\MLH\\Backend-Demo", [
-  "cd frontend",
-  "npm i",
-  "cd .. ",
-  "cd backend",
-  "npm i",
-]);
+// get_git_repo(
+//   "https://github.com/KohinaTheCat/Backend-Demo",
+//   "C:\\Users\\Clara\\Desktop\\MLH"
+// );
+// run_commands("C:\\Users\\Clara\\Desktop\\MLH\\Backend-Demo", [
+//   "cd frontend",
+//   "npm i",
+//   "cd .. ",
+//   "cd backend",
+//   "npm i",
+// ]);
 
 module.exports = get_git_repo;
