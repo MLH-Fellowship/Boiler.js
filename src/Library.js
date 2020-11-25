@@ -109,9 +109,10 @@ class FavoriteButton extends Component {
 }
 
 class DeployButton extends Component {
-  deployLink(id, event) {
+  async deployLink(id, event) {
     console.log("Deploying", id);
-    fetch(`http://localhost:5000/boilers/deploy/${id}`);
+    let {status, message} = await fetch(`http://localhost:5000/boilers/deploy/${id}`);
+    console.log(status, message);
   }
   render() {
     return (
