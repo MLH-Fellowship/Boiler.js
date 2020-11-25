@@ -18,7 +18,7 @@ async function get_git_repo(url, dir, commands) {
     console.log("stdout:", proc.stdout);
     // Return some data to be sent to the front end.
     return {
-      message: `Boiler successfully deployed to ${fullPath}!`,
+      message: `Boiler successfully deployed to "${fullPath}"!`,
       success: true,
       code: 0,
     };
@@ -33,30 +33,23 @@ async function get_git_repo(url, dir, commands) {
 }
 
 // usage: run_commands(path.join(os.homedir(), 'Boilers', 'Backend-Demo'), ["cd frontend", "npm i", "cd .. ", "cd backend", "npm i"]);
-function run_commands(dirPath, commands) {
+async function run_commands(dirPath, commands) {
+  // console.log("Dirpath", dirPath, 'commands', commands);
   let commandString = commands.join(" && ");
-  exec(
-    `${commandString}`,
-    {
-      windowsHide: false,
-    },
-    function (err, stdout, stderr) {
-      console.log(stdout);
-      console.log("just ran: ", commandString);
-    }
-  );
+  console.log(commandString);
+  console.log("path", dirPath);
+  try {
+    const proc = await exec(`${commandString}`, {cwd: dirPath, windowsHide: false});
+    console.log("stderr:", proc.stderr);
+    console.log("stdout:", proc.stdout);
+    return {message: `Setup commands were successful!`, success: true, code: 0}
+  } catch (e) {
+    // console.log(e)
+      return {message: `Error with code ${e.code}!`, success: false, code: e.code}
+  }
 }
 
-// get_git_repo(
-//   "https://github.com/KohinaTheCat/Backend-Demo",
-//   "C:\\Users\\Clara\\Desktop\\MLH"
-// );
-// run_commands("C:\\Users\\Clara\\Desktop\\MLH\\Backend-Demo", [
-//   "cd frontend",
-//   "npm i",
-//   "cd .. ",
-//   "cd backend",
-//   "npm i",
-// ]);
-
-module.exports = get_git_repo;
+module.exports = {
+  get: get_git_repo,
+  commands: run_commands
+}

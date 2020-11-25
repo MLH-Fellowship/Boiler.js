@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron .",
     "react": "react-scripts start",
-    "express": "cd backend-database && node index.js",
+    "express": "cd backend-database && nodemon index.js",
     "build": "npx react-scripts build",
     "develop": "npx react-scripts start",
     "try": "npm run build && npm run start"

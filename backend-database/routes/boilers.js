@@ -167,7 +167,7 @@ router.get("/deploy/:id", (req, res) => {
   // Make a request to the database.
   Boiler.findById(req.params.id)
   // Process the document via get_git_repo.
-    .then(async (res) => await get_git_repo(res.repo, boilerPath))
+    .then(async (res) => await get_git_repo.get(res.repo, boilerPath))
     // Process the response on success/failure and return the response to the caller.
     .then(({ message, success, code }) => {
       if (success == true) {
@@ -180,7 +180,7 @@ router.get("/deploy/:id", (req, res) => {
       } else if (code == 128) {
         response = {
           success: false,
-          message: `That boiler already exists. Check ${boilerPath}!`,
+          message: `That boiler already exists. Check "${boilerPath}"!`,
         };
         console.log(response);
         res.send(response);
@@ -194,5 +194,42 @@ router.get("/deploy/:id", (req, res) => {
     // I don't think this ever comes to pass.
     .catch((e) => console.log(e));
 });
+
+// Runs commands
+router.get("/setup/:id", (req, res) => {
+    // Compute path for a boiler.
+    const boilerPath = path.join(os.homedir(), "Boilers");
+    console.log("Running right");
+    // Make a request to the database.
+    Boiler.findById(req.params.id)
+    // Process the document via get_git_repo.
+      .then(async (res) => await get_git_repo.commands(
+          path.join(boilerPath, path.basename(res.repo, path.extname(res.repo))), res.commands))
+      // Process the response on success/failure and return the response to the caller.
+      .then(({ message, success, code }) => {
+        if (success == true) {
+          response = {
+            success: true,
+            message: message,
+          };
+          console.log("Run!", response);
+          res.send(response);
+        } else if (code == 128) {
+          response = {
+            success: false,
+            message: `That boiler already exists. Check ${boilerPath}!`,
+          };
+          console.log(response);
+          res.send(response);
+        } else {
+          res.send({
+            success: false,
+            message: `Unknown error with code ${code}.`,
+          });
+        }
+      })
+      // I don't think this ever comes to pass.
+      .catch((e) => console.log(e));
+  });
 
 module.exports = router;
