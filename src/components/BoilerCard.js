@@ -7,33 +7,21 @@ import { MuiThemeProvider } from "material-ui/styles";
 class BoilerCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { snackbarOpen: false, snackbarContent: ''};
         this.onButtonFunctionComplete = this.onButtonFunctionComplete.bind(this);
-        this.updateSnackbar = this.updateSnackbar.bind(this);
     }
     
     // Function runs after git repo is successfully downloaded
     async onButtonFunctionComplete(snackbarOpen, snackbarContent, id, path, commands) {
-        // this.updateSnackbar(snackbarOpen, snackbarContent);
         this.props.enqueueSnackbar(snackbarContent);
         for await (let i of commands) {
-            console.log(commands.indexOf(i));
+            // console.log(commands.indexOf(i));
+            // console.log("Command", i);       
             let snackbarUpdate = await secondFetch(id, path, commands.indexOf(i));
-            // this.updateSnackbar(false, " ");
-            // this.updateSnackbar(true, snackbarUpdate.message);     
             this.props.enqueueSnackbar(snackbarUpdate.message)
-            console.log("Command", i);       
         }
-        // this.updateSnackbar(true, "Commands are finished!");    
         this.props.enqueueSnackbar('Commands finished!')
      };
     
-    // Updates snackbar message
-    updateSnackbar = (snackbarOpen, snackbarContent) => {
-        console.log("Snackbar:", snackbarOpen, "SnackbarContent:", snackbarContent);
-        this.setState({snackbarOpen: snackbarOpen, snackbarContent: snackbarContent});
-    };
-
     render() {
         let element =
             <article className="boiler-card">
@@ -46,12 +34,8 @@ class BoilerCard extends React.Component {
                     <div className="card-button-array">
                         <FavoriteButton id={this.props._id}></FavoriteButton>
                         <DeployButton callback={this.onButtonFunctionComplete} id={this.props._id}></DeployButton>
-                        {/* <DownloadButton id={ this.props._id }></DownloadButton> */}
                     </div>
                 </section>
-                <MuiThemeProvider>
-                        <Snackbar open={this.state.snackbarOpen} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} autoHideDuration={6000} className="card-snackbar"message={this.state.snackbarContent}></Snackbar>
-                </MuiThemeProvider>
             </article>;
         return element
     }
@@ -59,9 +43,8 @@ class BoilerCard extends React.Component {
 
 // Fetches commands
 async function secondFetch(id, path, command) {
-    console.log("Test");
     let response = await (await fetch(`http://localhost:5000/boilers/setup/${id}/${command}/${path}`)).json();
-    console.log("Path", response.path);
+    // console.log("Path", response.path);
     return({success: true, message: response.message, path: response.path});
     }
 
