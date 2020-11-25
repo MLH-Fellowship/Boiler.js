@@ -12,12 +12,16 @@ class BoilerCard extends React.Component {
     }
     
     // Function runs after git repo is successfully downloaded
-    async onButtonFunctionComplete(snackbarOpen, snackbarContent, id) {
+    async onButtonFunctionComplete(snackbarOpen, snackbarContent, id, path, commands) {
         this.updateSnackbar(snackbarOpen, snackbarContent);
-        let snackbarUpdate = await secondFetch(id);
-        this.updateSnackbar(false, " ");
-        this.updateSnackbar(true, snackbarUpdate.message);
-        console.log("Checking");
+        for await (let i of commands) {
+            console.log(commands.indexOf(i));
+            let snackbarUpdate = await secondFetch(id, path, commands.indexOf(i));
+            this.updateSnackbar(false, " ");
+            this.updateSnackbar(true, snackbarUpdate.message);     
+            console.log("Command", i);       
+        }
+        this.updateSnackbar(true, "Commands are finished!");    
      };
     
     // Updates snackbar message
@@ -50,10 +54,11 @@ class BoilerCard extends React.Component {
 }
 
 // Fetches commands
-async function secondFetch(id) {
+async function secondFetch(id, path, command) {
     console.log("Test");
-    let response = await (await fetch(`http://localhost:5000/boilers/setup/${id}`)).json();
-    return({success: true, message: response.message});
+    let response = await (await fetch(`http://localhost:5000/boilers/setup/${id}/${command}/${path}`)).json();
+    console.log("Path", response.path);
+    return({success: true, message: response.message, path: response.path});
     }
 
 class FavoriteButton extends React.Component {
@@ -68,12 +73,8 @@ class FavoriteButton extends React.Component {
 class DeployButton extends React.Component {
     async deployLink(id, event) {
         let response = await (await fetch(`http://localhost:5000/boilers/deploy/${id}`)).json();
-        console.log("Hi");
-        // let response = await (await fetch(`http://localhost:5000/boilers/setup/${id}`)).json();
-        console.log("Response");
-        // console.log("Deploying", id);
-        // fetch(`http://localhost:5000/boilers/deploy/${id}`)
-        this.props.callback(true, response.message, id);
+        console.log(response.commands);
+        this.props.callback(true, response.message, response.id, response.path, response.commands);
     }
     render() {
         return <button onClick={(e) => this.deployLink(this.props.id, e)}>Clone from GitHub</button>;
