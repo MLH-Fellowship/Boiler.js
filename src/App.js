@@ -11,9 +11,10 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <body>
         <BoilerHeader />
-      </body >
+        <BoilerGalleryContainer />
+      </body>
     </MuiThemeProvider>
-  )
+  );
 }
 
 export default App;

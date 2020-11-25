@@ -8,6 +8,10 @@
   --button-hover-color: #1f007f;
 }
 
+.wrapper {
+  padding: 2rem;
+}
+
 body {
   background-color: var(--primary-bgcolor);
   color: var(--primary-fgcolor);
@@ -38,9 +42,8 @@ span.subtitle {
   background-color: var(--primary-fgcolor);
   color: var(--primary-fontcolor);
   margin: 1em;
-  /* box-shadow: 0 18px 18px -18px #ebedf5; */
   border-radius: 10px 10px 10px 10px;
-  display: block;
+  width: 20rem;
 }
 
 .boiler-card header {
@@ -73,14 +76,13 @@ span.subtitle {
   margin-left: 2em;
   margin-right: 2em;
   margin-bottom: 2em;
-  height: 100%;
-  max-height: 15rem;
-  width: 20rem;
 }
 
 .boiler-card-gallery {
+  justify-content: flex-start;
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .boiler-card button {
