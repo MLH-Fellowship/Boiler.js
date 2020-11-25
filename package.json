@@ -23,7 +23,7 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^11.0.2"
+    "electron": "^11.0.3"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.1",
