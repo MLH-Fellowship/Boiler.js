@@ -3,23 +3,28 @@ import Snackbar from "material-ui/Snackbar";
 import "./Library.css";
 import { MuiThemeProvider } from "material-ui/styles";
 
-async function setupCommands(id){
-    return "bobbby";
-}
-
 class BoilerCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = { snackbarOpen: false, snackbarContent: ''};
+        this.onButtonFunctionComplete = this.onButtonFunctionComplete.bind(this);
+        this.updateSnackbar = this.updateSnackbar.bind(this);
     }
-     
-     onButtonFunctionComplete = (snackbarOpen, snackbarContent) => {
-         console.log("Snackbar:", snackbarOpen, "SnackbarContent:", snackbarContent);
-         this.setState({snackbarOpen: snackbarOpen, snackbarContent: snackbarContent});
-         
-         let content = setupCommands(snackbarContent);
-         // this.setState({snackbarOpen: true, snackbarContent: content});
+    
+    // Function runs after git repo is successfully downloaded
+    async onButtonFunctionComplete(snackbarOpen, snackbarContent, id) {
+        this.updateSnackbar(snackbarOpen, snackbarContent);
+        let snackbarUpdate = await secondFetch(id);
+        this.updateSnackbar(false, " ");
+        this.updateSnackbar(true, snackbarUpdate.message);
+        console.log("Checking");
      };
+    
+    // Updates snackbar message
+    updateSnackbar = (snackbarOpen, snackbarContent) => {
+        console.log("Snackbar:", snackbarOpen, "SnackbarContent:", snackbarContent);
+        this.setState({snackbarOpen: snackbarOpen, snackbarContent: snackbarContent});
+    };
 
     render() {
         let element =
@@ -43,6 +48,13 @@ class BoilerCard extends React.Component {
     }
 }
 
+// Fetches commands
+async function secondFetch(id) {
+    console.log("Test");
+    let response = await (await fetch(`http://localhost:5000/boilers/setup/${id}`)).json();
+    return({success: true, message: response.message});
+    }
+
 class FavoriteButton extends React.Component {
     favoriteLink(name, event) {
         console.log("Favorited", name);
@@ -54,13 +66,13 @@ class FavoriteButton extends React.Component {
 
 class DeployButton extends React.Component {
     async deployLink(id, event) {
-        let resa = await (await fetch(`http://localhost:5000/boilers/deploy/${id}`)).json();
+        let response = await (await fetch(`http://localhost:5000/boilers/deploy/${id}`)).json();
         console.log("Hi");
-        let response = await (await fetch(`http://localhost:5000/boilers/setup/${id}`)).json();
+        // let response = await (await fetch(`http://localhost:5000/boilers/setup/${id}`)).json();
         console.log("Response");
         // console.log("Deploying", id);
         // fetch(`http://localhost:5000/boilers/deploy/${id}`)
-        this.props.callback(true, response.message)
+        this.props.callback(true, response.message, id);
     }
     render() {
         return <button onClick={(e) => this.deployLink(this.props.id, e)}>Clone from GitHub</button>;

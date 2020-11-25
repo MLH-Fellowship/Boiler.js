@@ -210,6 +210,7 @@ router.get("/deploy/:id", (req, res) => {
     .catch((e) => console.log(e));
 });
 
+// Runs commands
 router.get("/setup/:id", (req, res) => {
     // Compute path for a boiler.
     const boilerPath = path.join(os.homedir(), "Boilers");
