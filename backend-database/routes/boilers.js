@@ -178,17 +178,21 @@ router.post("/delete/:id", (req, res) => {
 
 router.get("/deploy/:id", (req, res) => {
   // Compute path for a boiler.
-  const boilerPath = path.join(os.homedir(), "Boilers");
+  const boilerPath = path.join(os.homedir(), "Boiler");
   // Make a request to the database.
+  let id = req.params.id;
   Boiler.findById(req.params.id)
   // Process the document via get_git_repo.
-    .then(async (res) => await get_git_repo.get(res.repo, boilerPath))
+    .then(async (res) => await get_git_repo.get(res.repo, boilerPath, res.commands))
     // Process the response on success/failure and return the response to the caller.
-    .then(({ message, success, code }) => {
+    .then(({ message, success, code, path, commands }) => {
       if (success == true) {
         response = {
           success: true,
           message: message,
+          id: id,
+          path: path,
+          commands: commands,
         };
         console.log(response);
         res.send(response);
@@ -196,6 +200,9 @@ router.get("/deploy/:id", (req, res) => {
         response = {
           success: false,
           message: `That boiler already exists. Check "${boilerPath}"!`,
+          id: id,
+          path: path,
+          commands: commands,
         };
         console.log(response);
         res.send(response);
@@ -211,16 +218,18 @@ router.get("/deploy/:id", (req, res) => {
 });
 
 // Runs commands
-router.get("/setup/:id", (req, res) => {
+router.get("/setup/:id/:command/:folder", (req, res) => {
     // Compute path for a boiler.
-    const boilerPath = path.join(os.homedir(), "Boilers");
+    // const boilerPath = path.join(os.homedir(), "Boilers");
     console.log("Running right");
-    // Make a request to the database.
+    console.log("Command", req.params.command);
+    console.log("Path", req.params.folder)
+    fullPath = req.params.folder;
+    console.log("Test");
+    let store = [req.params.command, req.params.folder];
+
     Boiler.findById(req.params.id)
-    // Process the document via get_git_repo.
-      .then(async (res) => await get_git_repo.commands(
-          path.join(boilerPath, path.basename(res.repo, path.extname(res.repo))), res.commands))
-      // Process the response on success/failure and return the response to the caller.
+    .then(async (res) => await get_git_repo.command(store[1], res.commands, store[0]))
       .then(({ message, success, code }) => {
         if (success == true) {
           response = {
