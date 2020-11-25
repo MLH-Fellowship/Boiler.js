@@ -1,45 +1,73 @@
-# electron-quick-start
+## Boiler.js
 
-**Clone and run for a quick way to see Electron in action.**
+<p align="center">
+     Boiler.js is a desktop application for software developers to quickly find and 
+     set up boilerplates on their local machine with a single click.
+     <br/>
 
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
+</p>
 
-**Use this app along with the [Electron API Demos](https://electronjs.org/#get-started) app for API code examples to help you get started.**
+## Screenshots
 
-A basic Electron application needs just these files:
+<p align="center">
+     <img  src="./readme_imgs/logo.jpg" alt="demo">
+</p>
 
-- `package.json` - Points to the app"s main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app"s **main process**.
-- `index.html` - A web page to render. This is the app"s **renderer process**.
+<p align="center">
+     <img  src="./readme_imgs/demogif.gif" alt="demo">
+</p>
 
-You can learn more about each of these components within the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start).
 
-## To Use
 
-To clone and run this repository you"ll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+## Technologies Used
+Frontend
+- [Electron.js](https://newspaper.readthedocs.io/en/latest/)
+- [React](https://flask.palletsprojects.com/en/1.1.x/)
 
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies
-npm install
-# Run the app
-npm start
-```
+Backend
+- [Express](https://www.heroku.com//)
+- [Mongoose]
 
-Note: If you"re using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+Database
+- [MongoDB Atlas]
 
-## Resources for Learning Electron
+## Installation
 
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron"s documentation
-- [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
+#### Developer Version
 
-## License
+1. Clone this repo. on your local machine (git clone https://github.com/MLH-Fellowship/Boiler.js.git)
 
-[CC0 1.0 (Public Domain)](LICENSE.md)
+2. Navigate to the root directory in your terminal
+
+3. Run 'npm run electron-build'. This will install all the necessary packages
+
+4. Run 'npm run try'. This builds the frontend files for use in electron, then launches the desktop application.
+
+5. Run 'npm start' to launch electron after build files are created.
+
+Note: You must run 'npm run try' every time the frontend is modified in order to view your changes.
+
+#### Consumer Version
+
+*add information about how to use electron as exe file*
+
+## How to Use?
+
+1. Launch Boiler.js ('npm start' or run exe)
+
+<p align="center">
+     <img  src="./readme_imgs/usage_exten.png" alt="demo">
+</p>
+
+2. Click on Deploy to download a boilerplate
+
+<p align="center">
+     <img  src="./readme_imgs/usage_summary.jpg" alt="demo">
+</p>
+
+3. Show validation stuff
+
+## Other
+
+
+Devpost Submission: 
