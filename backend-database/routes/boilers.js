@@ -171,7 +171,32 @@ router.post("/delete/:id", (req, res) => {
 
 router.get("/deploy/:id", (req, res) => {
     const boilerPath = path.join(os.homedir(), "Boilers");
-    Boiler.findById(req.params.id).then(async (res) => await get_git_repo(res.repo, boilerPath)).then(({message, success, code}) => {
+    Boiler.findById(req.params.id).then(async (res) => await get_git_repo.get(res.repo, boilerPath, res.commands)).then(({message, success, code, commands, path}) => {
+        if (success == true) {
+            response = {
+                success: true,
+                message: message
+            };
+            console.log(response);
+            res.send(response);
+            console.log("Path", path, "commands", commands);
+            return [path, commands];
+        } else if (code == 128) {
+            response = {
+                success: false,
+                message: `That boiler already exists. Check ${boilerPath}!`
+            };
+            console.log(response);
+            res.send(response);
+            console.log(path);
+            console.log("Commands", commands);
+            return[path, commands];
+        } else {
+            res.send({success: false, message: "Unknown error."});
+        }
+    })
+    .then((res) => get_git_repo.commands(res[0], res[1]))
+    .then(({message, success, code}) => {
         if (success == true) {
             response = {
                 success: true,
@@ -189,8 +214,8 @@ router.get("/deploy/:id", (req, res) => {
         } else {
             res.send({success: false, message: "Unknown error."});
         }
-
-    }).catch(e => console.log(e));
+    })
+    .catch(e => console.log(e));
 });
 
 module.exports = router;
