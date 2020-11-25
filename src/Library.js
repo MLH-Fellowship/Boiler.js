@@ -1,5 +1,5 @@
-import { throws } from "assert";
 import { Component } from "react";
+import Snackbar from "material-ui/Snackbar";
 import "./Library.css";
 
 class BoilerHeader extends Component {
@@ -75,6 +75,16 @@ class BoilerGallery extends Component {
 }
 
 class BoilerCard extends Component {
+    constructor(props) {
+        super(props);
+     state = { snackbarOpen: false, snackbarContent: {}};
+    }
+     
+     onButtonFunctionComplete = (snackbarOpen, snackbarContent) => {
+         console.log("Snackbar:", snackbarOpen, "SnackbarContent:", snackbarContent);
+         this.setState({snackbarOpen: snackbarOpen, snackbarContent: snackbarContent});
+     };
+
   render() {
     let element = (
       <article className="boiler-card">
@@ -85,8 +95,9 @@ class BoilerCard extends Component {
         <section className="card-body">
           <span>{this.props.description}</span>
           <p>{this.props.body}</p>
+          <Snackbar open={this.state.snackbarOpen} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} autoHideDuration={6000} message= {this.state.snackbarContent.message}></Snackbar>
           <FavoriteButton id={this.props._id}></FavoriteButton>
-          <DeployButton id={this.props._id}></DeployButton>
+          <DeployButton callback={this.onButtonFunctionComplete} id={this.props._id}></DeployButton>
           {/* <DownloadButton id={ this.props._id }></DownloadButton> */}
         </section>
       </article>
@@ -109,9 +120,10 @@ class FavoriteButton extends Component {
 }
 
 class DeployButton extends Component {
-  deployLink(id, event) {
-    console.log("Deploying", id);
-    fetch(`http://localhost:5000/boilers/deploy/${id}`);
+  async deployLink(id, event) {
+    let response = await fetch(`http://localhost:5000/boilers/deploy/${id}`);
+    // console.log(status, message);
+    this.props.callback(true, response);
   }
   render() {
     return (

@@ -4,7 +4,7 @@ let Boiler = require("../models/boilers.models");
 const path = require("path");
 const os = require("os");
 
-//connecting to db, init. gridstorage and creating a storage
+// connecting to db, init. gridstorage and creating a storage
 const multer = require("multer");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
@@ -146,9 +146,7 @@ router.get("/:id", (req, res) => {
     })
     .toArray((err, files) => {
       if (!files || files.length === 0) {
-        return res.status(404).json({
-          err: "no files exist",
-        });
+        return res.status(404).json({ err: "no files exist" });
       }
       gfs.openDownloadStream(mongoose.Types.ObjectId(req.params.id)).pipe(res);
     });
@@ -158,14 +156,42 @@ router.get("/:id", (req, res) => {
 router.post("/delete/:id", (req, res) => {
   gfs.delete(new mongoose.Types.ObjectId(req.params.id), (err, data) => {
     if (err) return res.status(404).json({ err: err.message });
+
     res.json("document deleted");
   });
 });
 
 router.get("/deploy/:id", (req, res) => {
+  // Compute path for a boiler.
   const boilerPath = path.join(os.homedir(), "Boilers");
+  // Make a request to the database.
   Boiler.findById(req.params.id)
-    .then((res) => get_git_repo(res.repo, boilerPath))
+  // Process the document via get_git_repo.
+    .then(async (res) => await get_git_repo(res.repo, boilerPath))
+    // Process the response on success/failure and return the response to the caller.
+    .then(({ message, success, code }) => {
+      if (success == true) {
+        response = {
+          success: true,
+          message: message,
+        };
+        console.log(response);
+        res.send(response);
+      } else if (code == 128) {
+        response = {
+          success: false,
+          message: `That boiler already exists. Check ${boilerPath}!`,
+        };
+        console.log(response);
+        res.send(response);
+      } else {
+        res.send({
+          success: false,
+          message: `Unknown error with code ${code}.`,
+        });
+      }
+    })
+    // I don't think this ever comes to pass.
     .catch((e) => console.log(e));
 });
 
