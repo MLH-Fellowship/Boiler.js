@@ -75,7 +75,10 @@ class BoilerGallery extends Component {
 }
 
 class BoilerCard extends Component {
+    constructor(props) {
+        super(props);
      state = { snackbarOpen: false, snackbarContent: {}};
+    }
      
      onButtonFunctionComplete = (snackbarOpen, snackbarContent) => {
          console.log("Snackbar:", snackbarOpen, "SnackbarContent:", snackbarContent);
