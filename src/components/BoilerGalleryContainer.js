@@ -16,10 +16,20 @@ function BoilerGalleryContainer() {
   }, []);
 
   return (
-    <>
+    <div className="wrapper">
+      <form>
+        <input
+          className="input"
+          type="text"
+          id="search"
+          name="search"
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="ex. React, Flask, Angular..."
+        ></input>
+      </form>
       <UploadForm setBoilers={setBoilers} />
       <BoilerGallery values={boilers} />
-    </>
+    </div>
   )
 
 }

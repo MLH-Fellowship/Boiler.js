@@ -14,6 +14,9 @@ body {
     margin: 0;
 }
 
+.wrapper{
+  padding: 2rem;
+}
 
 .boiler-header {
     background-color: var(--primary-bgcolor);
@@ -96,6 +99,16 @@ button {
     cursor:pointer; 
 }
 
-button:hover { 
-    background-color:var(--button-hover-color);
+button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
