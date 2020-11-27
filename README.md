@@ -85,9 +85,7 @@
 
 <br/>
 
-## Other
-
-Devpost Submission: 
+## Devpost Submission: https://devpost.com/software/boiler-js
 
 <br/>
 
